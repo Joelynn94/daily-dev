@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Project, Tag, Comment, Task, Sprint, DailyLog
+from .models import Tag, Comment, Task, Sprint
+from projects.models import Project
+from dailylogs.models import DailyLog
 
 
 @admin.register(Project)
@@ -19,7 +21,8 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'status', 'priority', 'created_at', 'due_date', 'project')
+    list_display = ('title', 'description', 'status',
+                    'priority', 'created_at', 'due_date', 'project')
     list_filter = ('status', 'priority', 'project')
 
 

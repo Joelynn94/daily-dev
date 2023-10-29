@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "tasks.apps.TasksConfig",
     "projects.apps.ProjectsConfig",
+    "dailylogs.apps.DailylogsConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

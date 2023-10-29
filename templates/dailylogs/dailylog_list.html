@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+
+{% block title %}Daily Logs{% endblock %}
+
+{% block content %}
+<div className="flex gap-4">
+	{% for project in projects %}
+  <h1>Your Daily Logs</h1>
+  <ul>
+      {% for log in dailylogs %}
+          <li>
+              <strong>{{ log.title }}</strong>
+              <p>{{ log.description }}</p>
+              <p>Date: {{ log.date }}</p>
+          </li>
+      {% empty %}
+          <li>No daily logs found.</li>
+      {% endfor %}
+  </ul>
+	{% endfor %}
+</div>
+{% endblock %}
