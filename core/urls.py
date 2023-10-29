@@ -18,9 +18,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 # https://docs.djangoproject.com/en/4.2/intro/tutorial01/#path-argument-route
-# The include() function allows referencing other URLconfs. 
+# The include() function allows referencing other URLconfs.
 urlpatterns = [
     path("", include("tasks.urls")),
-    path("polls/", include("polls.urls")), 
     path("admin/", admin.site.urls),
 ]
