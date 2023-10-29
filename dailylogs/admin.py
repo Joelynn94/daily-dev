@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import DailyLog
 
-# Register your models here.
+
+@admin.register(DailyLog)
+class DailyLogAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'date', 'user')

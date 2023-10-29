@@ -4,7 +4,6 @@
 
 {% block content %}
 <div className="flex gap-4">
-	{% for log in dailylogs %}
   <h1>Your Daily Logs</h1>
   <ul>
       {% for log in dailylogs %}
@@ -17,6 +16,5 @@
           <li>No daily logs found.</li>
       {% endfor %}
   </ul>
-	{% endfor %}
 </div>
 {% endblock %}

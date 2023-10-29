@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% block title %}Sprints{% endblock %}
+
+{% block content %}
+<div className="flex gap-4">
+  <h1>Your Sprints</h1>
+  <ul>
+      {% for sprint in sprints %}
+          <li>
+              <strong>{{ sprint.title }}</strong>
+              <p>{{ sprint.description }}</p>
+              <p>Start Date: {{ sprint.start_date }}</p>
+              <p>End Date: {{ sprint.end_date }}</p>
+          </li>
+      {% empty %}
+          <li>No sprints found.</li>
+      {% endfor %}
+  </ul>
+</div>
+{% endblock %}

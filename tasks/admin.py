@@ -1,12 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Comment, Task, Sprint
-from projects.models import Project
-from dailylogs.models import DailyLog
-
-
-@admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'created_at', 'due_date')
+from .models import Tag, Comment, Task
 
 
 @admin.register(Tag)
@@ -24,13 +17,3 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'status',
                     'priority', 'created_at', 'due_date', 'project')
     list_filter = ('status', 'priority', 'project')
-
-
-@admin.register(Sprint)
-class SprintAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'start_date', 'end_date')
-
-
-@admin.register(DailyLog)
-class DailyLogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'date', 'user')

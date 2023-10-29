@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "tasks.apps.TasksConfig",
     "projects.apps.ProjectsConfig",
     "dailylogs.apps.DailylogsConfig",
+    "sprints.apps.SprintsConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
