@@ -20,6 +20,7 @@ from django.urls import include, path
 # https://docs.djangoproject.com/en/4.2/intro/tutorial01/#path-argument-route
 # The include() function allows referencing other URLconfs.
 urlpatterns = [
+    path("", include("projects.urls")),
     path("", include("tasks.urls")),
     path("admin/", admin.site.urls),
 ]
