@@ -16,13 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from .views import account_login, account_logout, account_register, overview
 
 # https://docs.djangoproject.com/en/4.2/intro/tutorial01/#path-argument-route
 # The include() function allows referencing other URLconfs.
 urlpatterns = [
+    path('accounts/', include ('django.contrib.auth.urls')),
     path("", include("dailylogs.urls")),
     path("", include("projects.urls")),
     path("", include("tasks.urls")),
     path("", include("sprints.urls")),
+    path("", overview, name="overview"),
+    path("login/", account_login, name="login"),
+    path("logout/", account_logout, name="logout"),
+    path("register/", account_register, name="register"),
     path("admin/", admin.site.urls),
 ]

@@ -1,20 +1,21 @@
-{% extends '_base.html' %}
+{% extends 'base.html' %}
 
+<!-- -->
 {% block title %}Daily Logs{% endblock %}
-
+<!-- -->
 {% block content %}
 <div className="flex gap-4">
   <h1>Your Daily Logs</h1>
   <ul>
-      {% for log in dailylogs %}
-          <li>
-              <strong>{{ log.title }}</strong>
-              <p>{{ log.description }}</p>
-              <p>Date: {{ log.date }}</p>
-          </li>
-      {% empty %}
-          <li>No daily logs found.</li>
-      {% endfor %}
+    {% for log in dailylogs %}
+    <li>
+      <strong>{{ log.title }}</strong>
+      <p>{{ log.description }}</p>
+      <p>Date: {{ log.date }}</p>
+    </li>
+    {% empty %}
+    <li>No daily logs found.</li>
+    {% endfor %}
   </ul>
 </div>
 {% endblock %}
