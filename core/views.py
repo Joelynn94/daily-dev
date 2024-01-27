@@ -59,3 +59,22 @@ def account_register(request):
 
     return render(request, "registration/register.html", {"form": form})
 
+
+def overview(request):
+    projects = Project.objects.all()
+    sprints = Sprint.objects.all()
+    tasks = Task.objects.all()
+    dailylogs = DailyLog.objects.all()
+
+    context = {
+        "projects": projects,
+        "sprints": sprints,
+        "tasks": tasks,
+        "dailylogs": dailylogs,
+        "projects_count": projects.count(),
+        "sprints_count": sprints.count(),
+        "tasks_count": tasks.count(),
+        "dailylogs_count": dailylogs.count(),
+    }
+
+    return render(request, "core/overview.html", context)
