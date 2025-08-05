@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "tasks.apps.TasksConfig",
     "projects.apps.ProjectsConfig",
     "dailylogs.apps.DailylogsConfig",
@@ -73,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+ASGI_APPLICATION = 'core.asgi.application'
 
 
 # Database
@@ -132,6 +134,10 @@ COMPRESS_ROOT = BASE_DIR / 'static'
 COMPRESS_ENABLED = True
 
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+
+# Authentication
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
