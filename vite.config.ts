@@ -6,17 +6,22 @@ import react from '@vitejs/plugin-react-swc'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Don't set root to frontend - keep it at project root for easier path management
+  base: "/static/",
   build: {
     manifest: "manifest.json",
     outDir: resolve("./static/www/assets"),
     assetsDir: "",
+    modulePreload: {
+      polyfill: true
+    },
     rollupOptions: {
       input: {
-        main: resolve('./frontend/js/main.ts'),
-        // Add more entry points as needed
-        // app: resolve('./frontend/js/app.tsx'),
-        // other: resolve('./frontend/js/other.tsx'),
+        // Global base script - loaded on every page
+        'globals/base': resolve('./frontend/js/globals/base.ts'),
+        // React apps for specific pages
+        'apps/tasks': resolve('./frontend/js/apps/tasks.tsx'),
+        // Helper scripts for specific functionality
+        'helpers/projects': resolve('./frontend/js/helpers/projects.ts'),
       },
     },
   },

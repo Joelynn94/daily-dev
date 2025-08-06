@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.vite_context',
             ],
         },
     },
@@ -122,14 +123,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+# Frontend dev control set VITE_DEV=true when doing frontend specific work
+USE_VITE_DEV_SERVER = DEBUG and os.getenv('VITE_DEV', 'false').lower() == 'true'
+
+# Static files configuration
 STATIC_URL = 'static/'
 STATIC_ROOT = 'static'
 
-# Frontend dev control set VITE_DEV=true when doing frontend specific work
-USE_VITE_DEV_SERVER = DEBUG and os.environ.get('VITE_DEV', 'false').lower() == 'true'
+# Media files configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_DIRS = (
-    BASE_DIR / 'static/www',
+    BASE_DIR / 'static/www/assets',
 )
 
 DJANGO_VITE = {
@@ -137,11 +143,16 @@ DJANGO_VITE = {
         'dev_mode': USE_VITE_DEV_SERVER,
         'dev_server_host': 'localhost',
         'dev_server_port': 5173,
+        'dev_server_protocol': 'http',
         'ws_client_url': '@vite/client',
         'manifest_path': BASE_DIR / 'static' / 'www' / 'assets' / 'manifest.json',
-        # Don't use static_url_prefix in dev mode - let django-vite handle the URLs correctly
     }
 }
+
+if USE_VITE_DEV_SERVER:
+    print(f"Vite dev server mode enabled - HMR will be available")
+else: 
+    print(f"Using built static assets - run with VITE_DEV=true for HMR")
 
 # Authentication
 LOGIN_URL = '/accounts/login/'
