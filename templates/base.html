@@ -9,14 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
 
-    {% if USE_VITE_DEV_SERVER %}
-        <!-- Development mode: load from Vite dev server -->
-        {% vite_hmr_client %}
-        <script type="module" src="http://localhost:5173/static/frontend/js/globals/base.ts"></script>
-    {% else %}
-        <!-- Production mode: use django-vite -->
-        {% vite_asset 'globals/base.ts' %}
-    {% endif %}
+    {% vite_hmr_client %}
+    
+    <!-- Load main CSS for all pages -->
+    {% vite_asset 'frontend/css/base.css' %}
+    
+    <!-- Load global JavaScript -->
+    {% vite_asset 'frontend/js/globals/base.ts' %}
+    
+    <!-- Page-specific CSS and JS -->
+    {% block extra_css %}{% endblock %}
     {% block extra_js %}{% endblock %}
   </head>
 

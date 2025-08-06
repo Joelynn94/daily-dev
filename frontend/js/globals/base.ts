@@ -1,10 +1,27 @@
 // Global base script - loaded on every page
-import "../../css/main.css"
+// Note: CSS is now loaded separately via Vite entry points
 
 // Global utilities and helpers
 class GlobalApp {
   constructor() {
+    // Apply dark mode immediately to prevent flash
+    this.initializeTheme()
     this.init()
+  }
+
+  initializeTheme() {
+    // Apply saved theme immediately before other initialization
+    const savedTheme = localStorage.getItem('darkMode')
+    if (savedTheme === 'true') {
+      document.documentElement.classList.add('dark')
+    } else if (savedTheme === 'false') {
+      document.documentElement.classList.remove('dark')
+    } else {
+      // Auto-detect based on system preference
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+      }
+    }
   }
 
   init() {
@@ -12,6 +29,14 @@ class GlobalApp {
     this.setupDarkModeToggle()
     this.setupMobileMenu()
     this.setupGlobalEventListeners()
+    
+    // Reveal content after styles are loaded
+    this.revealContent()
+  }
+
+  revealContent() {
+    // Ensure content is visible after CSS loads
+    document.documentElement.classList.add('ready')
   }
 
   setupDarkModeToggle() {

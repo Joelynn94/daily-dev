@@ -1,40 +1,56 @@
 {% extends "base.html" %}
-<!-- -->
+{% load django_vite %}
+
 {% block title %}Login{% endblock %}
 
-<!-- -->
+{% block extra_css %}
+<!-- Load authentication-specific styles -->
+{% vite_asset 'frontend/css/pages/auth.css' %}
+{% endblock %}
+
 {% block content %}
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2 class="auth-title">Sign in to your account</h2>
+    </div>
 
-<!-- -->
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+    {% if form.errors %}
+    <div class="auth-error">
+      <p>Your username and password didn't match. Please try again.</p>
+    </div>
+    {% endif %}
 
-<!-- -->
-{% if next %}
-<!-- -->
-{% if user.is_authenticated %}
-<p>
-	Your account doesn't have access to this page. To proceed, please login with
-	an account that has access.
-</p>
-{% else %}
-<p>Please login to see this page.</p>
-{% endif %}
-<!-- -->
-{% endif %}
+    {% if next %}
+      {% if user.is_authenticated %}
+      <div class="auth-error">
+        <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+      </div>
+      {% else %}
+      <p class="text-center text-gray-600 dark:text-gray-400">Please login to see this page.</p>
+      {% endif %}
+    {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-	{% csrf_token %}
-	<input type="text" name="username" placeholder="Username" />
-	<input type="password" name="password" placeholder="Password" />
+    <form class="auth-form" method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="space-y-4">
+        <input class="auth-input" type="text" name="username" placeholder="Username" required />
+        <input class="auth-input" type="password" name="password" placeholder="Password" required />
+      </div>
 
-	<input type="submit" value="login" />
-	<input type="hidden" name="next" value="{{ next }}" />
-</form>
+      <div>
+        <button type="submit" class="auth-button">
+          Sign in
+        </button>
+      </div>
+      
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
 
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-<p><a href="{% url 'register' %}">Register</a></p>
-
+    <div class="text-center space-y-2 mt-6">
+      <p><a href="{% url 'password_reset' %}" class="auth-link">Lost password?</a></p>
+      <p><a href="{% url 'register' %}" class="auth-link">Register</a></p>
+    </div>
+  </div>
+</div>
 {% endblock %}

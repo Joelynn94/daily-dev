@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
+{% load django_vite %}
 
-<!-- -->
+
 {% block title %}Task List{% endblock %}
 
-<!-- -->
+{% block extra_css %}
+<!-- Load task-specific styles -->
+{% vite_asset 'frontend/css/pages/tasks.css' %}
+{% endblock %}
+
+{% block extra_js %}
+<!-- Load React tasks app -->
+{% vite_asset 'frontend/js/apps/tasks.tsx' %}
+{% endblock %}
+
 {% block content %}
 <div className="flex gap-4">
   {% for task in tasks %}

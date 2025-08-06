@@ -1,0 +1,49 @@
+/* Global base styles - loaded on all pages */
+@import "tailwindcss";
+
+:root {
+  --font-sans--font-feature-settings: normal;
+  --font-sans--font-variation-settings: normal;
+  --font-mono--font-feature-settings: normal;
+  --font-mono--font-variation-settings: normal;
+}
+
+/* Base layout and typography */
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* Navigation styles */
+nav {
+  /* Base navigation styles */
+}
+
+/* Global component styles */
+.btn {
+  @apply px-4 py-2 rounded transition-colors;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 text-white hover:bg-gray-700;
+}
+
+/* Form styles */
+.form-input {
+  @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  .form-input {
+    @apply border-gray-600 bg-gray-800 text-white;
+  }
+}

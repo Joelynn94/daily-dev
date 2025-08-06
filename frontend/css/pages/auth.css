@@ -1,0 +1,50 @@
+/* Authentication pages styling (login, register, etc.) */
+@import "../base.css";
+
+.auth-container {
+  @apply min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4;
+}
+
+@media (min-width: 640px) {
+  .auth-container {
+    @apply px-6;
+  }
+}
+
+@media (min-width: 1024px) {
+  .auth-container {
+    @apply px-8;
+  }
+}
+
+.auth-card {
+  @apply max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md;
+}
+
+.auth-header {
+  @apply text-center;
+}
+
+.auth-title {
+  @apply mt-6 text-3xl font-extrabold text-gray-900 dark:text-white;
+}
+
+.auth-form {
+  @apply mt-8 space-y-6;
+}
+
+.auth-input {
+  @apply appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10;
+}
+
+.auth-button {
+  @apply relative w-full flex justify-center py-2 px-4 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors;
+}
+
+.auth-link {
+  @apply text-blue-600 dark:text-blue-400 hover:text-blue-500;
+}
+
+.auth-error {
+  @apply bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 px-4 py-3 rounded-md;
+}

@@ -1,0 +1,62 @@
+/* Task management page styles */
+@import "../base.css";
+
+.task-grid {
+  @apply grid grid-cols-1 gap-6;
+}
+
+@media (min-width: 768px) {
+  .task-grid {
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .task-grid {
+    @apply grid-cols-3;
+  }
+}
+
+.task-card {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow;
+}
+
+.task-title {
+  @apply text-lg font-semibold text-gray-900 dark:text-white mb-2;
+}
+
+.task-description {
+  @apply text-gray-600 dark:text-gray-300 text-sm mb-4;
+}
+
+.task-status {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.task-status-pending {
+  @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400;
+}
+
+.task-status-progress {
+  @apply bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400;
+}
+
+.task-status-completed {
+  @apply bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400;
+}
+
+.task-actions {
+  @apply flex space-x-2 mt-4;
+}
+
+.task-button {
+  @apply text-xs px-3 py-1 rounded border transition-colors;
+}
+
+.task-button-edit {
+  @apply border-blue-300 text-blue-700 hover:bg-blue-50 dark:border-blue-600 dark:text-blue-400 dark:hover:bg-blue-900/20;
+}
+
+.task-button-delete {
+  @apply border-red-300 text-red-700 hover:bg-red-50 dark:border-red-600 dark:text-red-400 dark:hover:bg-red-900/20;
+}

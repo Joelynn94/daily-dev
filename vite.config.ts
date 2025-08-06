@@ -18,8 +18,15 @@ export default defineConfig({
       input: {
         // Global base script - loaded on every page
         'globals/base': resolve('./frontend/js/globals/base.ts'),
+        
+        // CSS entry points - separate from JS
+        'css/base': resolve('./frontend/css/base.css'),
+        'css/auth': resolve('./frontend/css/pages/auth.css'),
+        'css/tasks': resolve('./frontend/css/pages/tasks.css'),
+        
         // React apps for specific pages
         'apps/tasks': resolve('./frontend/js/apps/tasks.tsx'),
+        
         // Helper scripts for specific functionality
         'helpers/projects': resolve('./frontend/js/helpers/projects.ts'),
       },
