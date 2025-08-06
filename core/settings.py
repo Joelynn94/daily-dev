@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -32,6 +31,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "daphne",
+    'django_vite',
     "tasks.apps.TasksConfig",
     "projects.apps.ProjectsConfig",
     "dailylogs.apps.DailylogsConfig",
@@ -123,17 +123,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static'
+
+# Frontend dev control set VITE_DEV=true when doing frontend specific work
+USE_VITE_DEV_SERVER = DEBUG and os.environ.get('VITE_DEV', 'false').lower() == 'true'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / 'static/www',
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-COMPRESS_ROOT = BASE_DIR / 'static'
-
-COMPRESS_ENABLED = True
-
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+DJANGO_VITE = {
+    'default': {
+        'dev_mode': USE_VITE_DEV_SERVER,
+        'dev_server_host': 'localhost',
+        'dev_server_port': 5173,
+        'ws_client_url': '@vite/client',
+        'manifest_path': BASE_DIR / 'static' / 'www' / 'assets' / 'manifest.json',
+        # Don't use static_url_prefix in dev mode - let django-vite handle the URLs correctly
+    }
+}
 
 # Authentication
 LOGIN_URL = '/accounts/login/'

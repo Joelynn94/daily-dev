@@ -1,0 +1,11 @@
+{
+  "frontend/js/main.ts": {
+    "file": "main-Hzk3_Bud.js",
+    "name": "main",
+    "src": "frontend/js/main.ts",
+    "isEntry": true,
+    "css": [
+      "main-CL-OP_as.css"
+    ]
+  }
+}

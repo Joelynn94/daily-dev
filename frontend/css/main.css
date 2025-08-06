@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans--font-feature-settings: normal;
+  --font-sans--font-variation-settings: normal;
+  --font-mono--font-feature-settings: normal;
+  --font-mono--font-variation-settings: normal;
+}
